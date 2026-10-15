@@ -1,14 +1,20 @@
 // Runs only inside the local backend container. Test records and sessions are removed.
 import assert from "node:assert/strict";
 import { randomUUID, createHmac } from "node:crypto";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./backend/dist/generated/prisma/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
 import pg from "pg";
 if (
   process.env.NODE_ENV === "production" ||
   process.env.RUN_INTEGRATION_TESTS !== "1"
 )
   throw new Error("Explicit local integration-test opt-in required");
-const db = new PrismaClient();
+const db = new PrismaClient({
+  adapter: new PrismaPg({
+    connectionString: process.env.DATABASE_URL,
+    connectionTimeoutMillis: 5000,
+  }),
+});
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const prefix = `test-${randomUUID()}`;
 const sessions = [];

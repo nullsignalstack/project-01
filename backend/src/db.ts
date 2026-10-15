@@ -1,5 +1,13 @@
-import { PrismaClient } from "@prisma/client";
-export const db = new PrismaClient();
+import { PrismaClient } from "./generated/prisma/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { env } from "./config.js";
+
+export const db = new PrismaClient({
+  adapter: new PrismaPg({
+    connectionString: env.DATABASE_URL,
+    connectionTimeoutMillis: 5000,
+  }),
+});
 export const userSelect = {
   id: true,
   name: true,

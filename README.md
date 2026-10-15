@@ -87,7 +87,7 @@ The directory is visible to all authenticated users, including emails. Only admi
 - `frontend/src/`: dashboard, directory, role/category management, responsive styling
 - `Dockerfile`, `compose.yaml`, `docker/`: container builds, reverse proxy, local identity provider
 
-Reference documentation: [openid-client](https://github.com/panva/openid-client), [Prisma 6](https://www.prisma.io/docs/orm/v6/reference/prisma-schema-reference), [Vite](https://vite.dev/guide/).
+Reference documentation: [openid-client](https://github.com/panva/openid-client), [Prisma 7](https://www.prisma.io/docs/guides/upgrade-prisma-orm/v7), [Vite](https://vite.dev/guide/).
 
 With the local Docker stack running, after the first sign-in creates the session table, run the API integration smoke test:
 

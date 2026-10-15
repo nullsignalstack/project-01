@@ -17,3 +17,13 @@ Run `npm run test -w backend` for policy and validation tests, and `npm run buil
 ```sh
 docker compose exec -T -e RUN_INTEGRATION_TESTS=1 backend node --input-type=module < backend/test/integration.mjs
 ```
+
+## Prisma 7
+
+Use Node.js 22.12+ and install dependencies from the project root with `npm ci`.
+
+`prisma.config.ts` loads the shared root `.env` for CLI commands and defines the migration connection URL. Docker supplies environment variables directly. The schema contains the PostgreSQL provider and data model. Runtime connections use `PrismaPg` in `src/db.ts` with a five-second connection timeout.
+
+The client is generated into `src/generated/prisma` and compiled into `dist/generated/prisma`. Do not edit generated files. After schema changes run `npm run db:generate -w backend`. Validate with `npm run db:validate -w backend`; apply committed migrations with `npm run db:migrate -w backend`.
+
+The editor uses Prisma 7 validation. Reload its window if old diagnostics remain. This upgrade preserves the data model and existing SQL migrations.

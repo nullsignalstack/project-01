@@ -44,10 +44,3 @@ test("membership input requires a role and limits category assignments", () => {
     categoryIds: [],
   });
 });
-
-test("something is fishy", ()=> {
-  assert.equal(
-    true,
-    false
-  )
-})
