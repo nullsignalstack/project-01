@@ -1,0 +1,23 @@
+{
+  "name": "people-space",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces --if-present",
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "format": "prettier --write backend/src frontend/src frontend/test frontend/README.md frontend/vite.config.ts README.md compose.yaml package.json backend/package.json frontend/package.json",
+    "format:check": "prettier --check backend/src frontend/src frontend/test frontend/README.md frontend/vite.config.ts README.md compose.yaml package.json backend/package.json frontend/package.json"
+  },
+  "devDependencies": {
+    "deepmerge-ts": "^8.0.2",
+    "prettier": "^3.9.10"
+  },
+  "overrides": {
+    "deepmerge-ts": "$deepmerge-ts"
+  }
+}

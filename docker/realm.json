@@ -1,0 +1,57 @@
+{
+  "realm": "people",
+  "enabled": true,
+  "displayName": "PeopleSpace",
+  "registrationAllowed": false,
+  "clients": [
+    {
+      "clientId": "people-space",
+      "secret": "local-only-people-space-client-secret",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:8080/auth/callback",
+        "http://localhost:5173/auth/callback"
+      ],
+      "webOrigins": ["http://localhost:8080", "http://localhost:5173"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:8080/##http://localhost:5173/"
+      },
+      "defaultClientScopes": ["profile", "email"]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@example.com",
+      "firstName": "Alex",
+      "lastName": "Morgan",
+      "emailVerified": true,
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Admin-local-123!",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "member",
+      "email": "member@example.com",
+      "firstName": "Jamie",
+      "lastName": "Lee",
+      "emailVerified": true,
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Member-local-123!",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

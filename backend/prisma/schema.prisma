@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+model Role {
+  id String @id @default(cuid())
+  name String @unique
+  canManageCategories Boolean @default(false)
+  isAdmin Boolean @default(false)
+  users User[]
+}
+model User {
+  id String @id @default(cuid())
+  subject String @unique
+  email String
+  name String
+  createdAt DateTime @default(now())
+  roleId String
+  role Role @relation(fields: [roleId], references: [id])
+  categories Category[]
+}
+model Category {
+  id String @id @default(cuid())
+  name String @unique
+  description String @default("")
+  createdAt DateTime @default(now())
+  users User[]
+}
