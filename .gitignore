@@ -5,3 +5,4 @@ dist/
 
 # Generated Prisma Client
 backend/src/generated/
+.vscode
